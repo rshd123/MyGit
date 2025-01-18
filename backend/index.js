@@ -1,6 +1,17 @@
 import express from 'express';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import cors from 'cors';
+const PORT = 3000;
+const app = express();
+import bodyParser from 'body-parser'
+import http from 'http';
+
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
+const {MONGO_URL} = process.env;
+
 import initRepo from './controllers/init.js';
 import addRepo from './controllers/add.js';
 import commitRepo from './controllers/commit.js';
@@ -8,14 +19,11 @@ import pullRepo from './controllers/pull.js';
 import pushRepo from './controllers/push.js';
 import revertRepo from './controllers/revert.js';
 
-const PORT = 3000;
-const app = express();
-
-app.listen(PORT, () => {
-    console.log('app is listening');
-})
+import { Server } from 'socket.io';
+import { Socket } from 'dgram';
 
 yargs(hideBin(process.argv))
+    .command('start','start server',{},startServer())
     .command('init', 'Initialise git repository', {}, initRepo)
 
     .command(
@@ -33,7 +41,7 @@ yargs(hideBin(process.argv))
     )
 
     .command(
-        'commit <message>', 
+        'commit <message>',
         'commit the staged files', 
         (yargs)=>{
             yargs.positional('message',{
@@ -63,3 +71,56 @@ yargs(hideBin(process.argv))
             revertRepo(argv.commitID);
         }
     ).demandCommand(1, "You need atleast one command").help().argv
+
+
+function startServer(){
+
+    app.use(bodyParser.json());
+    app.use(express.json());
+    app.use(cors({origin:"*"}));
+
+    async function connecttoDB(MONGO_URL) {
+        await mongoose.connect(MONGO_URL); //return Promise
+    }
+    connecttoDB(MONGO_URL)
+        .then(()=>{
+            console.log('connected to DB');
+        })
+        .catch((err)=>{
+            console.log('could not connect to DB');
+        })
+
+    app.get('/',(req,res)=>{
+        res.send('HELLO');
+    })
+
+    const httpServer = http.createServer(app);
+    const io = new Server(httpServer,{
+        cors:{
+            origin:"*",
+            methods:['GET','POST'],
+        },
+    });
+    
+    const user = 'test';
+
+    io.on('connection', (socket)=>{
+        socket.on('joinRoom',(userID)=>{
+            user = userID;
+            console.log('======');
+            console.log(user);
+            console.log('======')
+        });
+    });
+
+    const db = mongoose.connection;
+
+    db.once('open',async ()=>{
+        console.log('CRUD operations');
+    });
+
+    httpServer.listen(PORT,()=>{
+        console.log('SERVER IS LISTENING...');
+    })
+
+}
