@@ -20,7 +20,8 @@ import pushRepo from './controllers/push.js';
 import revertRepo from './controllers/revert.js';
 
 import { Server } from 'socket.io';
-import { Socket } from 'dgram';
+
+import { mainRouter } from './routes/main.router.js';
 
 yargs(hideBin(process.argv))
     .command('start','start server',{},startServer())
@@ -78,6 +79,7 @@ function startServer(){
     app.use(bodyParser.json());
     app.use(express.json());
     app.use(cors({origin:"*"}));
+    app.use('/',mainRouter);
 
     async function connecttoDB(MONGO_URL) {
         await mongoose.connect(MONGO_URL); //return Promise
@@ -89,11 +91,7 @@ function startServer(){
         .catch((err)=>{
             console.log('could not connect to DB');
         })
-
-    app.get('/',(req,res)=>{
-        res.send('HELLO');
-    })
-
+    
     const httpServer = http.createServer(app);
     const io = new Server(httpServer,{
         cors:{
