@@ -3,16 +3,16 @@ const userRouter = express.Router();
 import {getAllUsers, signUp, login, getUserProfile, updateUserProfile, deleteUserProfile} from '../controllers/userController.js';
 
 
-userRouter.get('/getallusers',getAllUsers);
-
 userRouter.post('/signup',signUp);
 
 userRouter.post('/login',login);
 
-userRouter.get('/getuserprofile',getUserProfile);
+userRouter.get('/allUsers',getAllUsers);
 
-userRouter.put('/updateuserprofile',updateUserProfile);
+userRouter.get('/:id',getUserProfile);
 
-userRouter.delete('/deleteprofile',deleteUserProfile);
+userRouter.put('/update/:id',updateUserProfile);
+
+userRouter.delete('/delete/:id',deleteUserProfile);
 
 export default userRouter;

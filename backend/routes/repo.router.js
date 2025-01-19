@@ -15,16 +15,18 @@ repoRouter.post('/create',createRepository);
 
 repoRouter.get('/all',getAllRepositories);
 
-repoRouter.get('/:userID',fetchRepositoriesForCurrentUser);
+repoRouter.get('/id/:id',fetchRepositoryByID);
 
-repoRouter.get('/:id',fetchRepositoryByID);
-
-repoRouter.get('/:name',fetchRepositoryByName);
+repoRouter.get('/name/:name',fetchRepositoryByName);
 
 repoRouter.put('/update/:id',updateRepositoryByID);
 
-repoRouter.patch('/togglevisibility',toggleVisiblityByID);
-
 repoRouter.delete('/delete/:id',deleteRepositoryByID);
+
+repoRouter.patch('/visibility/:id',toggleVisiblityByID);
+
+repoRouter.get('/fetch/:userId',fetchRepositoriesForCurrentUser);
+
+
 
 export default repoRouter;

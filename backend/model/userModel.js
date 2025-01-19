@@ -44,8 +44,6 @@ const UserSchema = new Schema({
         }
     ],
 
-    
-
 });
 
 
