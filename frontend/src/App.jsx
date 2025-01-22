@@ -1,13 +1,7 @@
-import { useState } from 'react';
-import './App.css'  
+import ProjectRoutes from './Routes';
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      Hello world
-    </>
+    <ProjectRoutes/>
   );
 }
-
 export default App

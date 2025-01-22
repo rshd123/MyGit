@@ -30,9 +30,9 @@ const signUp = async (req, res) => {
 
         const { JWT_SECRET_KEY } = process.env;
 
-        const token = jwt.sign({ id: result.insertId }, JWT_SECRET_KEY, { expiresIn: "1h" });
+        const token = jwt.sign({ id: result._id }, JWT_SECRET_KEY, { expiresIn: "1h" });
 
-        res.status(201).json({ token, message: "User signed up successfully!" });
+        return res.status(201).json({ token, userId: result._id, message: 'User logged in Successfully' });
 
 
     } catch (err) {
