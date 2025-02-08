@@ -24,7 +24,7 @@ export default function ProjectRoutes(){
         if(userIdfromLocalStorage){
             navigate('/');
         }
-    },[currentUser,navigate,setCurrentUser]);
+    },[currentUser,setCurrentUser]);
 
     let elements = useRoutes([
         {

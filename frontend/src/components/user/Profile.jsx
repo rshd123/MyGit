@@ -1,9 +1,103 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Navbar from "../Navbar";
+import { UnderlineNav } from "@primer/react";
+import { BookIcon, RepoIcon } from "@primer/octicons-react";
+// import HeatMapProfile from "./HeatMap";
+import { useAuth } from "../../AuthContext.jsx";
 
-export default function Profile(){
-    return (
-        <div>
-            this is profile page
+const Profile = () => {
+  const navigate = useNavigate();
+  const [userDetails, setUserDetails] = useState({ username: "username" });
+  const { setCurrentUser } = useAuth();
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const userId = localStorage.getItem("userId");
+      console.log(userId);
+      if (userId) {
+        try {
+          const response = await axios.get(
+            `http://localhost:3000/user/${userId}`
+          );
+          setUserDetails(response.data);
+        } catch (err) {
+          console.error("Cannot fetch user details: ", err);
+        }
+      }
+    };
+    fetchUserDetails();
+  },[]);
+
+  return (
+    <>
+      <Navbar />
+      <UnderlineNav aria-label="Repository">
+        <UnderlineNav.Item
+          aria-current="page"
+          icon={BookIcon}
+          style={{
+            backgroundColor: "transparent",
+            color: "white",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
+          onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
+        >
+          Overview
+        </UnderlineNav.Item>
+
+        <UnderlineNav.Item
+          onClick={() => navigate("/repo")}
+          icon={RepoIcon}
+          style={{
+            backgroundColor: "transparent",
+            color: "whitesmoke",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
+          onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
+        >
+
+          Starred Repositories
+        </UnderlineNav.Item>
+      </UnderlineNav>
+
+      <button
+        onClick={() => {
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+          setCurrentUser(null);
+
+          window.location.href = "/auth";
+        }}
+        style={{ position: "fixed", bottom: "50px", right: "50px" }}
+        id="logout"
+      >
+        Logout
+      </button>
+
+      <div className="profile-page-wrapper">
+        <div className="user-profile-section">
+          <div className="profile-image"></div>
+
+          <div className="name">
+            <h3>{userDetails.username}</h3>
+          </div>
+
+          <button className="follow-btn">Follow</button>
+
+          <div className="follower">
+            <p>10 Follower</p>
+            <p>3 Following</p>
+          </div>
         </div>
-    );
-}
+
+        {/* <div className="heat-map-section">
+          <HeatMapProfile />
+        </div> */}
+      </div>
+    </>
+  );
+};
+
+export default Profile;
