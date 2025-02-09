@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "../Navbar";
 import { UnderlineNav } from "@primer/react";
 import { BookIcon, RepoIcon } from "@primer/octicons-react";
-// import HeatMapProfile from "./HeatMap";
+import HeatMapProfile from "./HeatMap.jsx";
 import { useAuth } from "../../AuthContext.jsx";
 
 const Profile = () => {
@@ -92,9 +92,9 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* <div className="heat-map-section">
+        <div className="heat-map-section">
           <HeatMapProfile />
-        </div> */}
+        </div>
       </div>
     </>
   );
