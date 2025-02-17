@@ -51,7 +51,7 @@ export default function Dashboard() {
                 <aside>
                     <h3>Suggested Repositories</h3>
                     {suggestedRepos.map((repo,idx)=>{
-                        return (<div key={idx}>
+                        return (<div key={idx} style={{border: '1px solid white', borderRadius:'10px', paddingLeft:'5px', margin:'10px'}}>
                             <p><b>Repository name: </b>{repo.name}</p>
                             <p><b>Description: </b>{repo.description}</p>
                         </div>);

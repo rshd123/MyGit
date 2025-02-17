@@ -1,13 +1,13 @@
 body{
-  background-color: #333;
+  background-color: #161a23;
   color: #f1f6fd;
 }
 
 /* auth */
 .login-wrapper {
     color: #f1f6fd;
-    height: 100%;
-    width: 100%;
+    height: 100vh; 
+     width: 100%;
     font-family: "Asap", sans-serif;
     background-color: #0c1116;
   }
@@ -153,6 +153,7 @@ body{
 
 /* dashboard */
 #dashboard{ 
+  padding: 0.5rem;
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -161,6 +162,7 @@ body{
 /*Navbar*/
 
 nav {
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   padding-bottom: 10px;
@@ -193,108 +195,53 @@ nav p:hover {
 
 /* profile */
 
-.profile-page-wrapper {
+.btn{
   display: flex;
-  min-height: 100vh;
-  color: whitesmoke;
-  width: 100%;
-  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
 }
 
-.user-profile-section {
-  width: 250px;
-  /* min-height: 100vh; */
+.profile-page-wrapper{
+  width: 700px;
   display: flex;
-  flex-direction: column;
-  padding: 40px 10px;
+  justify-content: space-evenly;
+  margin: 16px 32px;
 }
 
-.user-repo-section {
-  margin: 0px auto;
-  display: flex;
-  flex-wrap: wrap;
+.user-profile-section{
+  margin-right: 70px; 
 }
 
-.user-name {
-  /* width: 250px; */
-  margin: 10px 20px 10px 10px;
-  /* margin: 10px auto; */
+.userRepos{
+  padding: 25px 50px;
+  text-align: center;
 }
 
-.profile-image {
-  margin: 10px auto;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: grey;
+.editProfile{
+  padding: 50px 50px;
+  color:#fff;
+  text-align: center;
 }
 
-.follow-btn {
-  background-color: #20272d;
-  width: 250px;
-  margin: 10px auto;
-  height: 40px;
-  border-radius: 10px;
-  color: whitesmoke;
+.emailUpdate{
+  margin-bottom: 20px;
+}
+.emailUpdate i{
+  margin: 25px;
 }
 
-.follower {
-  display: flex;
-  justify-content: center;
-  width: 250px;
-  height: 30px;
-  gap: 10px;
-  margin: 10px auto;
+.passUpdate i{
+  margin-right: 25px;
 }
 
-.repo-card-wrapper {
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 40px 20px;
+
+
+/* New Repo */
+
+.newRepo{
+  text-align: center;
 }
 
-.repo {
-  border: 0.5px solid grey;
-  border-radius: 10px;
-  width: 400px;
-  height: 210px;
-  padding: 20px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.newRepo .span{
+  margin: 10px;
 }
 
-.repo-name {
-  cursor: pointer;
-  color: #408ced;
-  font-size: 20px;
-}
-
-.description {
-  color: grey;
-  font-size: 15px;
-}
-
-@media screen and (max-width: 750px) {
-  .repo {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 570px) {
-  .user-profile-section {
-    margin: auto;
-  }
-
-  .profile-page-wrapper {
-    display: block;
-  }
-}
-
-#logout:hover {
-  border: 1px solid white;
-}
