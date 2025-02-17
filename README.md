@@ -4,7 +4,7 @@ MyGit is a custom version control system designed to manage and track changes to
 # Features 
 
 ## Initialize a repository:
-_ _ node index init _ _
+__ node index init __
 
 ## Add files to staging: 
 node index add <file>
