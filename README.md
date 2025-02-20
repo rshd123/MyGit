@@ -1,7 +1,7 @@
 # MyGit
 MyGit is a custom version control system designed to manage and track changes to files efficiently. It provides a Git-like experience with essential commands for version control.
 
-## Features 
+## MyGit commands 
 
 **Initialize a repository:**
 _node index init_
