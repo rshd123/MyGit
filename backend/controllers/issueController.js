@@ -60,7 +60,7 @@ const getAllIssues = async (req, res) => {
         if(!issues){
             res.status(404).json({message:'Issue not found'});
         }
-        res.status(200).json({message:'Issues fetched'});
+        res.status(200).json(issues);
 
     } catch (err) {
         console.log();
@@ -75,7 +75,7 @@ const getIssueByID = async (req, res) => {
         if (!issue) {
             return res.status(404).json({ message: 'Issue not Found' });
         }
-        res.status(201).json({ message: 'Issue fetched successfully' });
+        res.status(201).json(issue);
 
     } catch (err) {
         console.error('Error Fetching issue: '+err);
