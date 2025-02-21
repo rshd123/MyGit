@@ -1,0 +1,33 @@
+import React,{useState} from "react";
+import axios from 'axios';
+import { useParams,useNavigate } from "react-router-dom";
+import Navbar from "../Navbar.jsx";
+
+export default function NewIssue(){
+    const [title,setTitle] = useState('');
+    const [description,setDescription] = useState('');
+
+    const navigate = useNavigate();
+    const {id} = useParams();
+
+    const onCreateIssue = async () => {
+        try {
+            const res = await axios.post(`http://localhost:3000/issue/${id}/create`,{
+                title:title,
+                description:description
+            });
+            res.status === 201 && navigate(`/repo/id/${id}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    return (
+        <div>
+            <Navbar />
+            <h1>Create New Issue</h1>
+            <input type="text" placeholder="Title" onChange={(e)=>setTitle(e.target.value)} value={title}/>
+            <input type="text" placeholder="Description" onChange={(e)=>setDescription(e.target.value)} value={description}/>
+            <button onClick={onCreateIssue}>Create Issue</button>
+        </div>
+    );
+}

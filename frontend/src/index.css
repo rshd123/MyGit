@@ -245,3 +245,26 @@ nav p:hover {
   margin: 10px;
 }
 
+/*Current Repo*/
+.currentRepo{
+  padding: 0.5rem;
+  display: flex;
+  gap: 10rem;
+}
+.transparent-button {
+  margin-top: 10px;
+  background: none; /* No background */
+  color: white; /* White text */
+  border: 2px solid white; /* Optional: White border */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.transparent-button:hover {
+  background: rgba(255, 255, 255, 0.2); /* Light overlay on hover */
+  
+}
+

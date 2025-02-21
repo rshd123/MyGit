@@ -7,7 +7,8 @@ import SignUp from "./components/auth/Signup.jsx";
 import NewRepo from "./components/repo/NewRepo.jsx";
 import EditProfile from "./components/user/EditProfile.jsx";
 import { useAuth } from "./AuthContext.jsx";
-
+import CurrRepo from "./components/repo/CurrRepo.jsx";
+import NewIssue from "./components/issue/Issue.jsx";
 export default function ProjectRoutes(){
 
     const { currentUser,setCurrentUser } = useAuth();
@@ -51,6 +52,14 @@ export default function ProjectRoutes(){
         {
             path:'/profile/edit',
             element:<EditProfile/>
+        },
+        {
+            path:'repo/id/:id',
+            element:<CurrRepo />
+        },
+        {
+            path:'repo/:id/issue/create',
+            element:<NewIssue />
         }
     ]);
 

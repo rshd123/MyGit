@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../Navbar.jsx";
+// import CurrRepo from "../repo/CurrRepo.jsx";
+import { useNavigate } from "react-router-dom";
+
 export default function Dashboard() {
     const [repos, setRepos] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestedRepos, setSuggestedRepos] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const navigate = useNavigate();
+    
+    const onSelect = (repoid)=>{
+        navigate(`/repo/id/${repoid}`);
+    }
 
     useEffect(() => {
         const userId = localStorage.getItem("userId");
@@ -68,9 +76,15 @@ export default function Dashboard() {
                         />
                     </div>
                     {searchResults.map((repo,idx)=>{
-                        return (<div key={idx}>
+                        return (
+                        <div 
+                            key={idx} 
+                            style={{border: '1px solid white', borderRadius:'10px', paddingLeft:'5px', margin:'10px'}}
+                            onClick={()=>onSelect(repo._id)}
+                        >
                             <p><b>Repository name: </b>{repo.name}</p>
-                        </div>);
+                        </div>
+                        );
                     })}
                 </main>
                 <aside>
