@@ -1,7 +1,8 @@
 import React ,{useEffect,useState}from "react";
 import { useAuth } from "../../AuthContext.jsx";
 import axios from "axios";
-
+import dotenv from "dotenv";
+dotenv.config();
 import { PageHeader } from "@primer/react";
 import { Box, Button } from "@primer/react";
 
@@ -22,7 +23,7 @@ export default function Login() {
     const handleLogin = async (e)=>{
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/user/login",{
+            const res = await axios.post(process.env.HANDLE_LOGIN,{
                 username,
                 password
             });
