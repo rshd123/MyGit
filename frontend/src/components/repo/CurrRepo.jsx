@@ -4,6 +4,7 @@ import Navbar from "../Navbar.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 // import dotenv from 'dotenv';
 // dotenv.config();
+import { Button } from "@mui/material";
 
 export default function CurrRepo() {
     const navigate = useNavigate();
@@ -40,6 +41,15 @@ export default function CurrRepo() {
         navigate(`/repo/${id}/issue/create`);
     };
 
+    const onDeleteIssue = async (issueId) => {
+        try {
+            const res = await axios.delete(`${import.meta.env.VITE_LINK}/issue/${id}/delete/${issueId}`);
+            res.status === 201 && navigate(`/repo/id/${id}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div>
             <Navbar />
@@ -68,6 +78,11 @@ export default function CurrRepo() {
                                 <div key={issue._id} style={{ border: '1px solid white', padding: '5px', margin: '10px', borderRadius: '10px' }}>
                                     <h4>Issue name: {issue.title}</h4>
                                     <p>Description: {issue.description}</p>
+                                    <Button 
+                                    variant ="outlined" 
+                                    color="success"
+                                    onClick={()=>onDeleteIssue(issue._id)}
+                                    >Issue Resolved!</Button>
                                 </div>
                             );
                         })}
