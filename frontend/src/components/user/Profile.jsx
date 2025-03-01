@@ -8,8 +8,8 @@ import HeatMapProfile from "./HeatMap.jsx";
 import { useAuth } from "../../AuthContext.jsx";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button } from "@mui/material";
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 const Profile = () => {
   const navigate = useNavigate();

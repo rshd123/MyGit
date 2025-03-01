@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/github-mark-white.svg";
 import { Link } from "react-router-dom";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 export default function SignUp() {
     const [email, setEmail] = useState("");

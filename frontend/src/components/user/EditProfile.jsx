@@ -3,8 +3,8 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 export default function EditProfile(){
 

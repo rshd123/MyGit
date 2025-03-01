@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../Navbar.jsx";
 import { useNavigate, useParams } from "react-router-dom";
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 export default function CurrRepo() {
     const navigate = useNavigate();
