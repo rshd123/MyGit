@@ -1,4 +1,3 @@
-import { get } from "mongoose";
 import React, { useContext, useEffect, useState, createContext } from "react";
 
 const AuthContext = createContext();
