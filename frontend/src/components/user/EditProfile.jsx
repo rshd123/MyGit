@@ -15,7 +15,7 @@ export default function EditProfile(){
 
     const onUpdate = async ()=>{
         try {
-            const reponse = await axios.put(`${process.env.LINK}/user/update/${localStorage.getItem("userId")}`,{
+            const reponse = await axios.put(`${import.meta.env.VITE_LINK}/user/update/${localStorage.getItem("userId")}`,{
                 email:email,
                 password:password,
             })

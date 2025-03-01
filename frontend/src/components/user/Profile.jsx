@@ -40,7 +40,7 @@ const Profile = () => {
       if (userId) {
         try {
           const response = await axios.get(
-            `${process.env.LINK}/user/${userId}`
+            `${import.meta.env.VITE_LINK}/user/${userId}`
           );
           setUserDetails(response.data);
         } catch (err) {
@@ -54,7 +54,7 @@ const Profile = () => {
 
   const onDeleteClick = async (repoID) => {
     // console.log(reponame);
-    const response = await axios.delete(`${process.env.LINK}/repo/delete/${repoID}`);
+    const response = await axios.delete(`${import.meta.env.VITE_LINK}/repo/delete/${repoID}`);
     setRepos(repos.filter((repo) => repo._id !== repoID));
   
   }

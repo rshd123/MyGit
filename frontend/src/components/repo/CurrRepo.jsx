@@ -15,7 +15,7 @@ export default function CurrRepo() {
 
     const Repo = async () => {
         try {
-            const repo = await axios.get(`${process.env.LINK}/repo/id/${id}`);
+            const repo = await axios.get(`${import.meta.env.VITE_LINK}/repo/id/${id}`);
             setRepoName(repo.data.name);
             setDescription(repo.data.description);
             setVisibility(repo.data.visibility);
@@ -27,7 +27,7 @@ export default function CurrRepo() {
 
     async function fetchIssues() {
         try {
-            const issue = await axios.get(`${process.env.LINK}/issue/${id}/all`);
+            const issue = await axios.get(`${import.meta.env.VITE_LINK}/issue/${id}/all`);
             // console.log(issue);
             setIssues(issue.data);
         } catch (err) {

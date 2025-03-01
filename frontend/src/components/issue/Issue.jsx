@@ -14,7 +14,7 @@ export default function NewIssue(){
 
     const onCreateIssue = async () => {
         try {
-            const res = await axios.post(`${process.env.LINK}/${id}/create`,{
+            const res = await axios.post(`${import.meta.env.VITE_LINK}/${id}/create`,{
                 title:title,
                 description:description
             });

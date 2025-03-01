@@ -32,7 +32,7 @@ export default function NewRepo() {
 
     const CreateRepo = async () => {
         try {
-            const response = await axios.post(`${process.env.LINK}/repo/create`, {
+            const response = await axios.post(`${import.meta.env.VITE_LINK}/repo/create`, {
                 name: title,
                 description: description,
                 owner:localStorage.getItem('userId'),

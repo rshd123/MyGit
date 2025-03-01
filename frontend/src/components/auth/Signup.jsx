@@ -21,7 +21,7 @@ export default function SignUp() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await axios.post(`${process.env.LINK}/user/signup`,{
+            const response = await axios.post(`${import.meta.env.VITE_LINK}/user/signup`,{
                 username,
                 email,
                 password

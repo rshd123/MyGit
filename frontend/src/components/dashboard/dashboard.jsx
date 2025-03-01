@@ -23,14 +23,14 @@ export default function Dashboard() {
 
         try {
             const fetchUserRepositories = async () => {
-                const result = await axios.get(`${process.env.LINK}/repo/fetch/${userId}`);
+                const result = await axios.get(`${import.meta.env.VITE_LINK}/repo/fetch/${userId}`);
                 const repositories = result.data.repositories;
                 setRepos(repositories);
                 // console.log(repositories);
             };
 
             const fetchSuggestedRepositories = async () => {
-                const result = await axios.get(`${process.env.LINK}/repo/all`);
+                const result = await axios.get(`${import.meta.env.VITE_LINK}/repo/all`);
                 const repositories = result.data;
                 setSuggestedRepos(repositories);
                 // console.log(repositories);
