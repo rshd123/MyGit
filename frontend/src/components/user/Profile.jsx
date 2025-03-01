@@ -8,6 +8,9 @@ import HeatMapProfile from "./HeatMap.jsx";
 import { useAuth } from "../../AuthContext.jsx";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button } from "@mui/material";
+import dotenv from 'dotenv';
+dotenv.config();
+
 const Profile = () => {
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({ username: "username" });
@@ -37,7 +40,7 @@ const Profile = () => {
       if (userId) {
         try {
           const response = await axios.get(
-            `http://localhost:3000/user/${userId}`
+            `${process.env.LINK}/user/${userId}`
           );
           setUserDetails(response.data);
         } catch (err) {
@@ -51,7 +54,7 @@ const Profile = () => {
 
   const onDeleteClick = async (repoID) => {
     // console.log(reponame);
-    const response = await axios.delete(`http://localhost:3000/repo/delete/${repoID}`);
+    const response = await axios.delete(`${process.env.LINK}/repo/delete/${repoID}`);
     setRepos(repos.filter((repo) => repo._id !== repoID));
   
   }

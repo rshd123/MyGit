@@ -3,6 +3,9 @@ import axios from "axios";
 import Navbar from "../Navbar.jsx";
 // import CurrRepo from "../repo/CurrRepo.jsx";
 import { useNavigate } from "react-router-dom";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 export default function Dashboard() {
     const [repos, setRepos] = useState([]);
@@ -20,14 +23,14 @@ export default function Dashboard() {
 
         try {
             const fetchUserRepositories = async () => {
-                const result = await axios.get(`http://localhost:3000/repo/fetch/${userId}`);
+                const result = await axios.get(`${process.env.LINK}/repo/fetch/${userId}`);
                 const repositories = result.data.repositories;
                 setRepos(repositories);
                 // console.log(repositories);
             };
 
             const fetchSuggestedRepositories = async () => {
-                const result = await axios.get(`http://localhost:3000/repo/all`);
+                const result = await axios.get(`${process.env.LINK}/repo/all`);
                 const repositories = result.data;
                 setSuggestedRepos(repositories);
                 // console.log(repositories);

@@ -8,6 +8,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import {useNavigate} from "react-router-dom";
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default function NewRepo() {
     const navigate = useNavigate();
@@ -30,7 +32,7 @@ export default function NewRepo() {
 
     const CreateRepo = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/repo/create", {
+            const response = await axios.post(`${process.env.LINK}/repo/create`, {
                 name: title,
                 description: description,
                 owner:localStorage.getItem('userId'),

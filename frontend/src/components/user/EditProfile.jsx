@@ -3,6 +3,8 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default function EditProfile(){
 
@@ -13,7 +15,7 @@ export default function EditProfile(){
 
     const onUpdate = async ()=>{
         try {
-            const reponse = await axios.put(`http://localhost:3000/user/update/${localStorage.getItem("userId")}`,{
+            const reponse = await axios.put(`${process.env.LINK}/user/update/${localStorage.getItem("userId")}`,{
                 email:email,
                 password:password,
             })

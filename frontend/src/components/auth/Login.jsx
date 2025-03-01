@@ -23,7 +23,7 @@ export default function Login() {
     const handleLogin = async (e)=>{
         e.preventDefault();
         try {
-            const res = await axios.post(process.env.HANDLE_LOGIN,{
+            const res = await axios.post(`${process.env.LINK}/user/login`,{
                 username,
                 password
             });

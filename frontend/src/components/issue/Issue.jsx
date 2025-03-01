@@ -2,6 +2,8 @@ import React,{useState} from "react";
 import axios from 'axios';
 import { useParams,useNavigate } from "react-router-dom";
 import Navbar from "../Navbar.jsx";
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default function NewIssue(){
     const [title,setTitle] = useState('');
@@ -12,7 +14,7 @@ export default function NewIssue(){
 
     const onCreateIssue = async () => {
         try {
-            const res = await axios.post(`http://localhost:3000/issue/${id}/create`,{
+            const res = await axios.post(`${process.env.LINK}/${id}/create`,{
                 title:title,
                 description:description
             });

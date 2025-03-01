@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../Navbar.jsx";
 import { useNavigate, useParams } from "react-router-dom";
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default function CurrRepo() {
     const navigate = useNavigate();
@@ -13,7 +15,7 @@ export default function CurrRepo() {
 
     const Repo = async () => {
         try {
-            const repo = await axios.get(`http://localhost:3000/repo/id/${id}`);
+            const repo = await axios.get(`${process.env.LINK}/repo/id/${id}`);
             setRepoName(repo.data.name);
             setDescription(repo.data.description);
             setVisibility(repo.data.visibility);
@@ -25,7 +27,7 @@ export default function CurrRepo() {
 
     async function fetchIssues() {
         try {
-            const issue = await axios.get(`http://localhost:3000/issue/${id}/all`);
+            const issue = await axios.get(`${process.env.LINK}/issue/${id}/all`);
             // console.log(issue);
             setIssues(issue.data);
         } catch (err) {
