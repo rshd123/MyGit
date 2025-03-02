@@ -22,7 +22,7 @@ const Profile = () => {
 
     try {
         const fetchUserRepositories = async () => {
-            const result = await axios.get(`http://localhost:3000/repo/fetch/${userId}`);
+            const result = await axios.get(`${import.meta.env.VITE_LINK}/repo/fetch/${userId}`);
             const repositories = result.data.repositories;
             setRepos(repositories);
             // console.log(repositories);
