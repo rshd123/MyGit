@@ -19,7 +19,7 @@ _node index push / node index pull_
 _node index revert < commitID >_
 
 ## User authentication for secure access
-MyGit includes user authentication to secure version control operations.
+MyGit includes user authentication to secure version control operations. It uses JWT to store UserId in local storage 
 
 ## Tech Stack
 **Frontend:** React.js, Material UI <br>
